@@ -16,6 +16,13 @@ If you prefer Docker, there is a pre-built Docker image as well:
 docker pull kfei/slack-cleaner
 ```
 
+## Minimal Slack permission scopes required
+
+- `channels:history`
+- `channels:read`
+- `chat:write:bot`
+- `users:read`
+
 ## Usage
 
 ```bash

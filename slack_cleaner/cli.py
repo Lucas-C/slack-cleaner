@@ -6,7 +6,7 @@ import pprint
 import sys
 import time
 
-from slacker import Slacker
+from slacker import Error, Slacker
 
 from slack_cleaner import __version__
 from slack_cleaner.utils import Colors, Counter, TimeRange
@@ -139,9 +139,10 @@ def delete_message_on_channel(channel_id, message):
             # No response is a good response
             # FIXME: Why this behaviour differ from Slack's documentation?
             slack.chat.delete(channel_id, message['ts'])
-        except:
+        except Error as error:
             logger.error(Colors.YELLOW + 'Failed to delete ->' + Colors.ENDC)
             pp.pprint(message)
+            logger.error(Colors.RED + 'ERROR:' + str(error) + Colors.ENDC)
             return
 
         logger.warning(Colors.RED + 'Deleted message -> ' + Colors.ENDC
